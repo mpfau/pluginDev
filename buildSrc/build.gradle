@@ -1,0 +1,23 @@
+try {
+	new URL('http://proxy.zuehlke.com/proxy.pac').text
+	System.properties['http.proxyHost'] = 'proxy.zuehlke.com'
+	System.properties['http.proxyPort'] = '8080'
+} catch(Exception e) {
+	// Proxy not available, use direct access to the
+}
+
+	apply plugin: 'groovy'
+	repositories {
+		mavenCentral()
+		flatDir name:'gradle-libs', dirs: System.env.GRADLE_HOME + '/lib'
+		flatDir name:'gradle-plugins', dirs: System.env.GRADLE_HOME + '/lib/plugins'
+	}
+	dependencies {
+		groovy 'org.codehaus.groovy:groovy-all:1.5.6'
+		
+		compile 'org.gradle:gradle-core:0.9-preview-1'
+		compile 'org.gradle:gradle-plugins:0.9-preview-1'
+		compile 'org.apache:ivy:2.1.0'
+		compile 'org.slf4j:slf4j-api:1.5.10'
+		compile 'commons-httpclient:commons-httpclient:3.1'
+	}
